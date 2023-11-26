@@ -119,51 +119,51 @@ export default {
     emailValidate,
     requiredValidate,
     onSubmit() {
-  if (!this.usernameCaption.showClass) {
-    Notify.create({
-      type: "negative",
-      message: "Username is already taken",
-    });
-    return;
-  }
-
-  const data = {
-    fullname: this.fullname,
-    email: this.email,
-    username: this.username,
-    password: this.password,
-  };
-
-  this.$api.post("/auth/signup", data)
-    .then((response) => {
-      if (response && response.data) {
-        this.storeLogUser.userid = response.data.id;
-        this.storeLogUser.fullname = response.data.fullname;
-        this.storeLogUser.username = response.data.username;
-        this.storeLogUser.accessToken = response.data.accessToken;
-        this.storeLogUser.userType = response.data.userType;
-
+      if (!this.usernameCaption.showClass) {
         Notify.create({
-          color: 'positive',
-          message: 'Registration successful'
+          type: "negative",
+          message: "Username is already taken",
         });
-
-        this.$router.push('/user/dashboard');
-      } else {
-        throw new Error('Invalid response from server');
+        return;
       }
-    })
-    .catch((error) => {
-      console.error(error);
-      Notify.create({
-        color: 'negative',
-        message: `Registration failed: ${error.message}`
-      });
-    })
-    .finally(() => {
-      this.onReset();
-    });
-},
+
+      const data = {
+        fullname: this.fullname,
+        email: this.email,
+        username: this.username,
+        password: this.password,
+      };
+
+      this.$api.post("/auth/signup", data)
+        .then((response) => {
+          if (response && response.data) {
+            this.storeLogUser.userid = response.data.id;
+            this.storeLogUser.fullname = response.data.fullname;
+            this.storeLogUser.username = response.data.username;
+            this.storeLogUser.accessToken = response.data.accessToken;
+            this.storeLogUser.userType = response.data.userType;
+
+            Notify.create({
+              color: 'positive',
+              message: 'Registration successful'
+            });
+
+            this.$router.push('/user/dashboard');
+          } else {
+            throw new Error('Invalid response from server');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          Notify.create({
+            color: 'negative',
+            message: `Registration failed: ${error.message}`
+          });
+        })
+        .finally(() => {
+          this.onReset();
+        });
+    },
     onReset() {
       this.fullname = null;
       this.email = null;

@@ -142,6 +142,12 @@ const adminlinksList = [
     link: "/admin/list",
   },
   {
+    title: "Add New Game",
+    caption: "Add new game in shop",
+    icon: "games",
+    link: "/admin/add",
+  },
+  {
     title: "Comfirm Order",
     caption: "Confirm the user's order",
     icon: "border_color",
