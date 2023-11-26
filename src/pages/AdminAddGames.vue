@@ -55,7 +55,7 @@ export default {
       columns: [
         { name: 'id', align: 'left', label: 'ID', field: 'id', sortable: true },
         { name: 'gamename', align: 'center', label: 'Game Name', field: 'name', sortable: true },
-        { name: 'image_url', align: 'center', label: 'Image', field: 'image_url', sortable: true },
+        { name: 'image', align: 'center', label: 'Image', field: 'image_url', sortable: false, format: (val) => val },
         { name: 'package', align: 'center', label: 'Package', field: 'package', sortable: true },
         { name: 'actions', align: 'center', label: 'Actions', field: 'actions', sortable: false },
       ],
